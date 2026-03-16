@@ -30,9 +30,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		330A273D2F67B6AF00201302 /* OccForecast */ = {
+		330A273D2F67B6AF00201302 /* LaborForecast */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OccForecast;
+			path = LaborForecast;
 			sourceTree = "<group>";
 		};
 		330A274B2F67B6B100201302 /* LaborForecastTests */ = {
@@ -75,7 +75,7 @@
 		330A27322F67B6AF00201302 = {
 			isa = PBXGroup;
 			children = (
-				330A273D2F67B6AF00201302 /* OccForecast */,
+				330A273D2F67B6AF00201302 /* LaborForecast */,
 				330A274B2F67B6B100201302 /* LaborForecastTests */,
 				330A27552F67B6B100201302 /* LaborForecastUITests */,
 				330A273C2F67B6AF00201302 /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				330A273D2F67B6AF00201302 /* OccForecast */,
+				330A273D2F67B6AF00201302 /* LaborForecast */,
 			);
 			name = LaborForecast;
 			packageProductDependencies = (

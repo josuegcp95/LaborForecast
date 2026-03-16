@@ -45,8 +45,8 @@ struct LaunchView: View {
                 Spacer().frame(height: 28)
 
                 // "OCCUPATIONAL"
-                Text("OCCUPATIONAL")
-                    .font(.system(size: 32, weight: .black, design: .default))
+                Text("LABOR")
+                    .font(.system(size: 36, weight: .black, design: .default))
                     .foregroundStyle(.white)
                     .tracking(8)
                     .opacity(titleVisible ? 1 : 0)
