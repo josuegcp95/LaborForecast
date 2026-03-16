@@ -21,9 +21,9 @@ struct CategoriesView: View {
 
     private var categories: [CategoryInfo] {
         let grouped = Dictionary(grouping: service.occupations, by: \.category)
-        return grouped.map { slug, occs in
-            let avg = Double(occs.map(\.exposure).reduce(0, +)) / Double(occs.count)
-            return CategoryInfo(slug: slug, count: occs.count, avgExposure: avg)
+        return grouped.map { slug, occupation in
+            let avg = Double(occupation.map(\.exposure).reduce(0, +)) / Double(occupation.count)
+            return CategoryInfo(slug: slug, count: occupation.count, avgExposure: avg)
         }
         .sorted { $0.slug < $1.slug }
     }
@@ -84,7 +84,7 @@ struct CategoriesView: View {
             }
         }
         .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: 100, alignment: .topLeading)
         .background(Color.primary.opacity(0.05))
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .overlay(

@@ -206,7 +206,7 @@ struct CareerDetailView: View {
                 .foregroundStyle(.secondary)
         }
         .padding(12)
-        .frame(width: 160, alignment: .leading)
+        .frame(width: 160, height: 120, alignment: .topLeading)
         .background(cardBG)
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .overlay(

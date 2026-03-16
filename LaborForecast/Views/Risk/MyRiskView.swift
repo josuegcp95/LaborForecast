@@ -33,15 +33,15 @@ struct MyRiskView: View {
     var body: some View {
         NavigationStack(path: $navPath) {
             Group {
-                if viewModel.hasSelection, let occ = viewModel.selectedOccupation {
-                    scoreState(occ)
+                if viewModel.hasSelection, let occupation = viewModel.selectedOccupation {
+                    scoreState(occupation)
                 } else {
                     emptyState
                 }
             }
             .navigationTitle("My Risk")
-            .navigationDestination(for: Occupation.self) { occ in
-                CareerDetailView(occupation: occ)
+            .navigationDestination(for: Occupation.self) { occupation in
+                CareerDetailView(occupation: occupation)
             }
         }
         .onAppear {
@@ -114,13 +114,13 @@ struct MyRiskView: View {
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 10) {
-                            ForEach(occupationsToShow) { occ in
+                            ForEach(occupationsToShow) { occupation in
                                 Button {
-                                    viewModel.select(occ)
+                                    viewModel.select(occupation)
                                     searchText = ""
                                     selectedCategory = nil
                                 } label: {
-                                    OccupationCard(occupation: occ)
+                                    OccupationCard(occupation: occupation)
                                 }
                                 .buttonStyle(.plain)
                             }
@@ -128,6 +128,7 @@ struct MyRiskView: View {
                         .padding(.horizontal)
                         .padding(.bottom)
                     }
+                    .scrollDismissesKeyboard(.interactively)
                 }
             } else {
                 // Category grid
@@ -144,6 +145,7 @@ struct MyRiskView: View {
                         .padding(.horizontal)
                         .padding(.bottom)
                 }
+                .scrollDismissesKeyboard(.interactively)
             }
         }
     }
@@ -155,8 +157,8 @@ struct MyRiskView: View {
 
         return LazyVGrid(columns: columns, spacing: 12) {
             ForEach(categories, id: \.self) { slug in
-                let occs = grouped[slug] ?? []
-                let avg = Double(occs.map(\.exposure).reduce(0, +)) / Double(max(occs.count, 1))
+                let occupation = grouped[slug] ?? []
+                let avg = Double(occupation.map(\.exposure).reduce(0, +)) / Double(max(occupation.count, 1))
                 Button {
                     selectedCategory = slug
                 } label: {
@@ -166,7 +168,7 @@ struct MyRiskView: View {
                             .fontWeight(.semibold)
                             .lineLimit(2)
                             .foregroundStyle(.primary)
-                        Text("\(occs.count) careers")
+                        Text("\(occupation.count) careers")
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                         GeometryReader { geo in
@@ -193,17 +195,17 @@ struct MyRiskView: View {
 
     // MARK: - Score state
 
-    private func scoreState(_ occ: Occupation) -> some View {
-        let saferAlts = service.saferAlternatives(for: occ)
+    private func scoreState(_ occupation: Occupation) -> some View {
+        let saferAlts = service.saferAlternatives(for: occupation)
         let all = service.occupations
-        let percentile = all.isEmpty ? 0 : Int(Double(all.filter { $0.exposure >= occ.exposure }.count) / Double(all.count) * 100)
+        let percentile = all.isEmpty ? 0 : Int(Double(all.filter { $0.exposure >= occupation.exposure }.count) / Double(all.count) * 100)
 
         return ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 // Selected job pill
                 HStack {
-                    TierBadge(tier: occ.aiTier)
-                    Text(occ.title)
+                    TierBadge(tier: occupation.aiTier)
+                    Text(occupation.title)
                         .font(.subheadline)
                         .fontWeight(.semibold)
                     Spacer()
@@ -213,13 +215,13 @@ struct MyRiskView: View {
                 // Score card
                 VStack(spacing: 12) {
                     HStack(alignment: .bottom, spacing: 24) {
-                        RiskGauge(score: occ.exposure)
+                        RiskGauge(score: occupation.exposure)
                             .frame(width: 130, height: 70)
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("\(tierLabel(for: occ.aiTier)) exposure")
+                            Text("\(tierLabel(for: occupation.aiTier)) exposure")
                                 .font(.headline)
-                                .foregroundStyle(tierColor(for: occ.aiTier))
+                                .foregroundStyle(tierColor(for: occupation.aiTier))
                             Text("Top \(percentile)% of all occupations")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
@@ -239,7 +241,7 @@ struct MyRiskView: View {
                                 .fill(.white)
                                 .frame(width: 16, height: 16)
                                 .shadow(radius: 2)
-                                .offset(x: geo.size.width * CGFloat(occ.exposure) / 10 - 8)
+                                .offset(x: geo.size.width * CGFloat(occupation.exposure) / 10 - 8)
                         }
                     }
                     .frame(height: 16)
@@ -251,14 +253,14 @@ struct MyRiskView: View {
 
                 // AI reason
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("WHY \(tierLabel(for: occ.aiTier).uppercased()) EXPOSURE")
+                    Text("WHY \(tierLabel(for: occupation.aiTier).uppercased()) EXPOSURE")
                         .font(.caption)
                         .fontWeight(.semibold)
                         .foregroundStyle(.secondary)
                         .tracking(1.5)
                         .padding(.horizontal)
 
-                    Text(occ.aiReason)
+                    Text(occupation.aiReason)
                         .font(.body)
                         .padding()
                         .background(Color.primary.opacity(0.05))
@@ -319,7 +321,7 @@ struct MyRiskView: View {
                 .foregroundStyle(.secondary)
         }
         .padding(12)
-        .frame(width: 160, alignment: .leading)
+        .frame(width: 160, height: 120, alignment: .topLeading)
         .background(Color.primary.opacity(0.05))
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .overlay(

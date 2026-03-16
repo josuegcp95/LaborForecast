@@ -10,25 +10,44 @@ import SwiftUI
 struct FavoritesView: View {
     @Environment(FavoritesViewModel.self) var favorites
     @Environment(OccupationService.self) var service
-
+    
     var body: some View {
         NavigationStack {
-            Group {
+            VStack(spacing: 0) {
+                // Pinned title — lives outside the List so it never scrolls away
+                HStack {
+                    Text("Saved")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+                .padding(.bottom, 4)
+
                 if favorites.savedSlugs.isEmpty {
                     emptyState
                 } else {
                     populatedState
                 }
             }
-            .navigationTitle("Saved")
-            .navigationDestination(for: Occupation.self) { occ in
-                CareerDetailView(occupation: occ)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if !favorites.savedSlugs.isEmpty {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        EditButton()
+                    }
+                }
+            }
+            .navigationDestination(for: Occupation.self) { occupation in
+                CareerDetailView(occupation: occupation)
             }
         }
     }
-
+    
     // MARK: - Empty
-
+    
     private var emptyState: some View {
         VStack(spacing: 16) {
             Spacer()
@@ -45,48 +64,56 @@ struct FavoritesView: View {
             Spacer()
         }
     }
-
+    
     // MARK: - Populated
-
+    
     private var populatedState: some View {
-        List {
-            Section {
+        VStack(spacing: 0) {
+            HStack {
                 Text("\(favorites.savedOccupations.count) careers saved")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .listRowSeparator(.hidden)
+                Spacer()
             }
-            .listRowBackground(Color.clear)
-
-            ForEach(favorites.savedOccupations) { occ in
-                NavigationLink(value: occ) {
-                    savedRow(occ)
-                }
-                .swipeActions(edge: .trailing) {
-                    Button(role: .destructive) {
-                        favorites.remove(occ.slug)
-                    } label: {
-                        Label("Remove", systemImage: "heart.slash")
+            .padding(.horizontal)
+            .padding(.top, 4)
+            .padding(.bottom, 8)
+            
+            List {
+                ForEach(favorites.savedOccupations) { occupation in
+                    NavigationLink(value: occupation) {
+                        savedRow(occupation)
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .destructive) {
+                            favorites.remove(occupation.slug)
+                        } label: {
+                            Label("Remove", systemImage: "heart.slash")
+                        }
                     }
                 }
+                .onMove { source, destination in
+                    favorites.move(from: source, to: destination)
+                }
             }
+            .listStyle(.plain)
+            .contentMargins(.bottom, 16, for: .scrollContent)
         }
-        .listStyle(.plain)
     }
-
-    private func savedRow(_ occ: Occupation) -> some View {
+    
+    private func savedRow(_ occupation: Occupation) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(occ.title)
+                Text(occupation.title)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .lineLimit(2)
-                Text("\(categoryDisplayName(occ.category)) · \(formatPay(occ.pay))")
+                Text("\(categoryDisplayName(occupation.category)) · \(formatPay(occupation.pay))")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            TierBadge(tier: occ.aiTier)
+            TierBadge(tier: occupation.aiTier)
         }
         .padding(.vertical, 4)
     }

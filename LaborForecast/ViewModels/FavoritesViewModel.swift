@@ -5,7 +5,7 @@
 //  Created by Josue Cruz on 3/15/26.
 //
 
-import Foundation
+import SwiftUI
 import Observation
 
 @Observable
@@ -42,6 +42,11 @@ class FavoritesViewModel {
 
     func remove(_ slug: String) {
         savedSlugs.removeAll { $0 == slug }
+        persist()
+    }
+
+    func move(from source: IndexSet, to destination: Int) {
+        savedSlugs.move(fromOffsets: source, toOffset: destination)
         persist()
     }
 

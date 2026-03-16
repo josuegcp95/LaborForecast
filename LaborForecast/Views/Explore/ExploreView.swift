@@ -66,6 +66,7 @@ struct ExploreView: View {
                     }
                     .padding()
                 }
+                .scrollDismissesKeyboard(.interactively)
             }
             .navigationTitle("Explore")
             .toolbar {
@@ -84,8 +85,8 @@ struct ExploreView: View {
                     }
                 }
             }
-            .navigationDestination(for: Occupation.self) { occ in
-                CareerDetailView(occupation: occ)
+            .navigationDestination(for: Occupation.self) { occupation in
+                CareerDetailView(occupation: occupation)
             }
             .sheet(isPresented: $showCategories) {
                 CategoriesView { slug in
@@ -160,17 +161,17 @@ struct ExploreView: View {
     private var defaultSections: some View {
         Group {
             sectionHeader("MOST AT RISK")
-            ForEach(viewModel.mostAtRisk) { occ in
-                NavigationLink(value: occ) {
-                    OccupationCard(occupation: occ)
+            ForEach(viewModel.mostAtRisk) { occupation in
+                NavigationLink(value: occupation) {
+                    OccupationCard(occupation: occupation)
                 }
                 .buttonStyle(.plain)
             }
 
             sectionHeader("MOST AI-PROOF")
-            ForEach(viewModel.mostAIProof) { occ in
-                NavigationLink(value: occ) {
-                    OccupationCard(occupation: occ)
+            ForEach(viewModel.mostAIProof) { occupation in
+                NavigationLink(value: occupation) {
+                    OccupationCard(occupation: occupation)
                 }
                 .buttonStyle(.plain)
             }
@@ -195,9 +196,9 @@ struct ExploreView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.top, 60)
             } else {
-                ForEach(viewModel.filteredOccupations) { occ in
-                    NavigationLink(value: occ) {
-                        OccupationCard(occupation: occ)
+                ForEach(viewModel.filteredOccupations) { occupation in
+                    NavigationLink(value: occupation) {
+                        OccupationCard(occupation: occupation)
                     }
                     .buttonStyle(.plain)
                 }
