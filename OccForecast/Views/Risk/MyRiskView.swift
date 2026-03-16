@@ -1,3 +1,10 @@
+//
+//  MyRiskView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct MyRiskView: View {
@@ -88,7 +95,7 @@ struct MyRiskView: View {
                                 .font(.caption)
                                 .fontWeight(.semibold)
                         }
-                        .foregroundStyle(Color.occGreen)
+                        .foregroundStyle(Color.LFGreen)
                     }
                     Spacer()
                 }

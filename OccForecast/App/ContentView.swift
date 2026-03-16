@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct ContentView: View {

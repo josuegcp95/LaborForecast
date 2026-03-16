@@ -1,8 +1,8 @@
-# OccForecast — Claude Code Briefing
+# LaborForecast — Claude Code Briefing
 
-## What is OccForecast
+## What is LaborForecast
 
-OccForecast is a native iOS app that shows AI exposure risk (0–10 scale) for every US occupation tracked by the Bureau of Labor Statistics. Users can explore all 342 careers, check their own job's risk score, save favorites, and find safer career alternatives. The app is data-only — no backend, no network calls at runtime, no authentication.
+LaborForecast is a native iOS app that shows AI exposure risk (0–10 scale) for every US occupation tracked by the Bureau of Labor Statistics. Users can explore all 342 careers, check their own job's risk score, save favorites, and find safer career alternatives. The app is data-only — no backend, no network calls at runtime, no authentication.
 
 ---
 
@@ -12,7 +12,7 @@ OccForecast is a native iOS app that shows AI exposure risk (0–10 scale) for e
 |---|---|
 | UI | SwiftUI |
 | Architecture | MVVM — `@Observable` ViewModels, `@AppStorage` for persistence |
-| Data | Local JSON bundle — `occforecast_data.json` loaded once at app start |
+| Data | Local JSON bundle — `labor_forecast_data.json` loaded once at app start |
 | Persistence | `@AppStorage` (UserDefaults) — saved career slugs + selected job slug |
 | Minimum iOS | iOS 17 |
 | No backend | No Firebase, no network requests, no authentication |
@@ -23,7 +23,7 @@ OccForecast is a native iOS app that shows AI exposure risk (0–10 scale) for e
 ## Project Folder Structure
 
 ```
-OccForecast/
+LaborForecast/
 ├── App/
 │   ├── OccForecastApp.swift
 │   └── ContentView.swift
@@ -53,7 +53,7 @@ OccForecast/
 │       ├── AboutView.swift
 │       └── DataSourcesView.swift
 └── Resources/
-    ├── occforecast_data.json
+    ├── labor_forecast_data.json
     └── Assets.xcassets
 ```
 
@@ -62,7 +62,7 @@ OccForecast/
 ## Data Model
 
 ### JSON source
-`Resources/occforecast_data.json` — array of 342 occupation objects, loaded once at app start by `OccupationService`.
+`Resources/labor_forecast_data.json` — array of 342 occupation objects, loaded once at app start by `OccupationService`.
 
 ### Occupation struct (exact field names from JSON)
 
@@ -95,7 +95,7 @@ class OccupationService {
     var occupations: [Occupation] = []
     var isLoaded = false
 
-    // Loads occforecast_data.json from Bundle synchronously at init
+    // Loads labor_forecast_data.json from Bundle synchronously at init
     // Builds a slug-indexed dictionary for O(1) lookups
     func occupation(for slug: String) -> Occupation?
     func saferAlternatives(for occupation: Occupation) -> [Occupation]
@@ -133,7 +133,7 @@ TabView (persistent)
 ### 1. LaunchView
 - Full screen dark background (`#090B10`)
 - 7 vertical bars animate in sequentially left to right with staggered `.delay()`, colors green → red matching risk tiers
-- "OCC" bold text fades in below bars, "FORECAST" light text below that
+- "LABOR" bold text fades in below bars, "FORECAST" light text below that
 - Loading indicator at bottom
 - Transitions to TabView after `OccupationService` finishes loading (minimum 1.5s for animation)
 - No skip button
@@ -270,8 +270,8 @@ Presented as `.sheet` from ExploreView gear icon.
     - "Methodology" row → pushes `AboutView`
     - "Data sources" row → pushes `DataSourcesView`
   - **App section:**
-    - "Share OccForecast" row → `ShareLink` with app URL
-- Version number + data vintage at bottom (muted): "OccForecast v1.0.0 · Data: BLS OOH 2024–2034"
+    - "Share LaborForecast" row → `ShareLink` with app URL
+- Version number + data vintage at bottom (muted): "LaborForecast v1.0.0 · Data: BLS OOH 2024–2034"
 
 ### 10. AboutView
 Pushed from Settings.
@@ -355,11 +355,11 @@ class FavoritesViewModel {
 ```swift
 extension Color {
     // Backgrounds
-    static let occDarkBG    = Color(hex: "#090B10")  // dark mode screens
-    static let occLightBG   = Color(hex: "#F5F2EC")  // light mode screens (warm off-white)
+    static let LFDarkBG    = Color(hex: "#090B10")  // dark mode screens
+    static let LFLightBG   = Color(hex: "#F5F2EC")  // light mode screens (warm off-white)
 
     // Brand
-    static let occGreen     = Color(hex: "#22C55E")  // active tab, CTAs, low risk
+    static let LFGreen     = Color(hex: "#22C55E")  // active tab, CTAs, low risk
 
     // Risk tier colors
     static let riskMinimal  = Color(hex: "#22C55E")  // 0–1
@@ -426,7 +426,7 @@ func tierLabel(for tier: String) -> String {
 
 ### Favorites sync
 `FavoritesViewModel` is the single source of truth for saved slugs. It must be:
-- Created once in `OccForecastApp`
+- Created once in `LaborForecastApp`
 - Injected via `.environment(favoritesViewModel)`
 - Accessed in `CareerDetailView` and `FavoritesView` via `@Environment`
 
@@ -457,8 +457,8 @@ var savedSlugs: [String] {
 
 | Case | Handling |
 |---|---|
-| `pay` is null (2 occupations: Military, Fishing) | Show "N/A" — never force-unwrap |
-| `jobs` is null (1 occupation: Military) | Show "N/A" |
+| `pay` is null (2 occupations: Military, Fishing) | Show " " — never force-unwrap |
+| `jobs` is null (1 occupation: Military) | Show " " | OCCUPATION REMOVED FROM JSON
 | `saferAlts` is empty (~48 low-risk occupations) | Show message: "This career is already among the most AI-resistant" — no empty scroll view |
 | `socCode` is empty string (52 occupations) | Don't display SOC code field if empty |
 | Slug not found in OccupationService | Should never happen — all saferAlts slugs are validated at build time — but handle gracefully if it does |
@@ -525,11 +525,11 @@ Do not build any StoreKit infrastructure in v1.
 
 The following files are available in the project root for reference:
 
-- `occforecast_data.json` — the complete data file (drop into Resources/)
-- `OccForecast_Build_Plan.docx` — full build plan with phase breakdown
+- `Labor_forecast_data.json` — the complete data file (drop into Resources/)
+- `Labor_Forecast_Build_Plan.docx` — full build plan with phase breakdown
 - `Screenshots/` — reference screenshots for all 10 views (dark mode)
-- `OccForecast_Icon_Dark.png` — dark mode app icon
-- `OccForecast_Icon_Light.png` — light mode app icon
+- `Labor_Forecast_Icon_Dark.png` — dark mode app icon
+- `Labor_Forecast_Icon_Light.png` — light mode app icon
 
 ---
 

@@ -1,3 +1,10 @@
+//
+//  Occupation.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import Foundation
 
 struct Occupation: Codable, Identifiable, Hashable {

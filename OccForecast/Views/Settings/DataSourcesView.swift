@@ -1,3 +1,10 @@
+//
+//  DataSourcesView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct DataSourcesView: View {
@@ -13,7 +20,7 @@ struct DataSourcesView: View {
                         .foregroundStyle(.secondary)
                     Link("bls.gov/ooh", destination: URL(string: "https://www.bls.gov/ooh")!)
                         .font(.caption)
-                        .foregroundStyle(Color.occGreen)
+                        .foregroundStyle(Color.LFGreen)
                 }
                 .padding(.vertical, 4)
             }

@@ -1,13 +1,13 @@
 //
-//  OccForecastUITestsLaunchTests.swift
-//  OccForecastUITests
+//  LaborForecastUITestsLaunchTests.swift
+//  LaborForecastUITestsLaunchTests
 //
 //  Created by Josue Cruz on 3/15/26.
 //
 
 import XCTest
 
-final class OccForecastUITestsLaunchTests: XCTestCase {
+final class LaborForecastUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,3 +1,10 @@
+//
+//  LaunchView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct LaunchView: View {
@@ -18,7 +25,7 @@ struct LaunchView: View {
 
     var body: some View {
         ZStack {
-            Color.occDarkBG.ignoresSafeArea()
+            Color.LFDarkBG.ignoresSafeArea()
 
             VStack(spacing: 0) {
                 Spacer()

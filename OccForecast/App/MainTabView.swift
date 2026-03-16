@@ -1,3 +1,10 @@
+//
+//  MainTabView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct MainTabView: View {
@@ -18,6 +25,6 @@ struct MainTabView: View {
                     Label("Saved", systemImage: "heart")
                 }
         }
-        .tint(Color.occGreen)
+        .tint(Color.LFGreen)
     }
 }

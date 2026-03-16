@@ -1,7 +1,14 @@
+//
+//  LaborForecastApp.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 @main
-struct OccForecastApp: App {
+struct LaborForecastApp: App {
     @State private var occupationService = OccupationService()
     @State private var favoritesViewModel = FavoritesViewModel()
     @State private var myRiskViewModel = MyRiskViewModel()

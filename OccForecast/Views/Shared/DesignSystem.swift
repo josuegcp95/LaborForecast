@@ -1,3 +1,10 @@
+//
+//  DesignSystem.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 // MARK: - Color Extensions
@@ -13,9 +20,9 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 
-    static let occDarkBG    = Color(hex: "#090B10")
-    static let occLightBG   = Color(hex: "#F5F2EC")
-    static let occGreen     = Color(hex: "#22C55E")
+    static let LFDarkBG    = Color(hex: "#090B10")
+    static let LFLightBG   = Color(hex: "#F5F2EC")
+    static let LFGreen     = Color(hex: "#22C55E")
 
     static let riskMinimal  = Color(hex: "#22C55E")
     static let riskLow      = Color(hex: "#5BD87C")

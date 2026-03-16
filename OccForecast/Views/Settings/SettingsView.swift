@@ -1,3 +1,10 @@
+//
+//  SettingsView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct SettingsView: View {
@@ -23,9 +30,9 @@ struct SettingsView: View {
                 Section("App") {
                     ShareLink(
                         item: URL(string: "https://apps.apple.com")!,
-                        message: Text("Check your AI exposure risk with OccForecast!")
+                        message: Text("Check your AI exposure risk with LaborForecast!")
                     ) {
-                        Label("Share OccForecast", systemImage: "square.and.arrow.up")
+                        Label("Share LaborForecast", systemImage: "square.and.arrow.up")
                     }
                 }
             }
@@ -37,7 +44,7 @@ struct SettingsView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Text("OccForecast v1.0.0 · Data: BLS OOH 2024–2034")
+                Text("LaborForecast v1.0.0 · Data: BLS OOH 2024–2034")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 16)

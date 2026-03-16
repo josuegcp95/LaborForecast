@@ -1,3 +1,10 @@
+//
+//  ExploreView.swift
+//  LaborForecast
+//
+//  Created by Josue Cruz on 3/15/26.
+//
+
 import SwiftUI
 
 struct ExploreView: View {
@@ -121,8 +128,8 @@ struct ExploreView: View {
                         }
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
-                        .background(Color.occGreen.opacity(0.2))
-                        .foregroundStyle(Color.occGreen)
+                        .background(Color.LFGreen.opacity(0.2))
+                        .foregroundStyle(Color.LFGreen)
                         .clipShape(Capsule())
                     }
                 }
@@ -142,8 +149,8 @@ struct ExploreView: View {
                 .fontWeight(isActive ? .semibold : .regular)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(isActive ? Color.occGreen.opacity(0.2) : Color.primary.opacity(0.06))
-                .foregroundStyle(isActive ? Color.occGreen : Color.primary)
+                .background(isActive ? Color.LFGreen.opacity(0.2) : Color.primary.opacity(0.06))
+                .foregroundStyle(isActive ? Color.LFGreen : Color.primary)
                 .clipShape(Capsule())
         }
     }
