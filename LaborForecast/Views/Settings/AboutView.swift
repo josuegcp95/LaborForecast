@@ -9,12 +9,12 @@ import SwiftUI
 
 struct AboutView: View {
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("What is AI Exposure?")
                         .font(.headline)
-                    Text("AI exposure measures how likely an occupation's core tasks are to be automated, augmented, or restructured by artificial intelligence over the next decade. It does not predict job elimination — many high-exposure jobs will transform rather than disappear.")
+                    Text("AI exposure measures how likely an occupation's core tasks are to be automated, augmented, or restructured by artificial intelligence over the next decade. It does not predict job elimination, many high-exposure jobs will transform rather than disappear.")
                         .font(.body)
                         .foregroundStyle(.secondary)
                 }
@@ -55,11 +55,12 @@ struct AboutView: View {
                 .font(.caption)
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
+                .lineLimit(1)
+                .fixedSize()
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
                 .background(riskColor(for: firstDigit))
                 .clipShape(RoundedRectangle(cornerRadius: 6))
-                .frame(width: 44)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(label)

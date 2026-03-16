@@ -11,6 +11,7 @@ struct LaunchView: View {
     let onFinish: () -> Void
 
     @Environment(OccupationService.self) var occupationService
+    @Environment(\.colorScheme) var colorScheme
     @State private var barsVisible = [false, false, false, false, false, false, false]
     @State private var titleVisible = false
     @State private var subtitleVisible = false
@@ -25,7 +26,7 @@ struct LaunchView: View {
 
     var body: some View {
         ZStack {
-            Color.LFDarkBG.ignoresSafeArea()
+            (colorScheme == .dark ? Color.LFDarkBG : Color.LFLightBG).ignoresSafeArea()
 
             VStack(spacing: 0) {
                 Spacer()
@@ -44,25 +45,21 @@ struct LaunchView: View {
 
                 Spacer().frame(height: 28)
 
-                // "OCCUPATIONAL"
+                // "LABOR"
                 Text("LABOR")
                     .font(.system(size: 36, weight: .black, design: .default))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
                     .tracking(8)
                     .opacity(titleVisible ? 1 : 0)
 
                 // "FORECAST"
                 Text("FORECAST")
                     .font(.system(size: 18, weight: .light, design: .default))
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(colorScheme == .dark ? Color.white.opacity(0.6) : Color.black.opacity(0.5))
                     .tracking(12)
                     .opacity(subtitleVisible ? 1 : 0)
 
                 Spacer()
-
-                ProgressView()
-                    .tint(.white.opacity(0.4))
-                    .padding(.bottom, 48)
             }
         }
         .onAppear {

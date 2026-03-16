@@ -457,8 +457,8 @@ var savedSlugs: [String] {
 
 | Case | Handling |
 |---|---|
-| `pay` is null (2 occupations: Military, Fishing) | Show " " — never force-unwrap |
-| `jobs` is null (1 occupation: Military) | Show " " | OCCUPATION REMOVED FROM JSON
+| `pay` is null (2 occupations: Military, Fishing) | Show "No data" — never force-unwrap |
+| `jobs` is null (1 occupation: Military) | Show "No data" | OCCUPATION REMOVED FROM JSON
 | `saferAlts` is empty (~48 low-risk occupations) | Show message: "This career is already among the most AI-resistant" — no empty scroll view |
 | `socCode` is empty string (52 occupations) | Don't display SOC code field if empty |
 | Slug not found in OccupationService | Should never happen — all saferAlts slugs are validated at build time — but handle gracefully if it does |

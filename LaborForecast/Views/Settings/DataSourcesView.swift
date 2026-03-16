@@ -27,7 +27,7 @@ struct DataSourcesView: View {
 
             Section("AI Exposure Scoring") {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Gemini Flash — Structured Rubric")
+                    Text("Gemini Flash - Structured Rubric")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                     Text("AI exposure scores (0–10) were generated using Google Gemini Flash with a 6-factor structured rubric evaluating task routineness, data dependency, language processing intensity, creative requirement, physical presence need, and social judgment complexity.")
@@ -39,10 +39,10 @@ struct DataSourcesView: View {
 
             Section("Coverage") {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("342 BLS-tracked occupations")
+                    Text("341 BLS-tracked occupations")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                    Text("All major US occupational groups covered. SOC codes provided where available. Military occupations included with limited salary data.")
+                    Text("Covers all major US occupational groups from the BLS Occupational Outlook Handbook.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

@@ -32,7 +32,7 @@ struct CategoriesView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 12) {
                     ForEach(categories) { cat in
                         Button {

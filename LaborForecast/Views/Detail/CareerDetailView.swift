@@ -25,7 +25,7 @@ struct CareerDetailView: View {
     }
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
                 // Header
                 VStack(alignment: .leading, spacing: 4) {
@@ -117,9 +117,9 @@ struct CareerDetailView: View {
 
     private var statsGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-            statCell(label: "Median Salary", value: formatPay(occupation.pay))
-            statCell(label: "US Employment", value: formatJobs(occupation.jobs))
-            statCell(label: "10-yr Outlook", value: formatOutlook(occupation.outlook))
+            statCell(label: "Median Pay (2024)", value: formatPay(occupation.pay))
+            statCell(label: "Jobs (2024)", value: formatJobs(occupation.jobs))
+            statCell(label: "Outlook (10-yr)", value: formatOutlook(occupation.outlook))
             statCell(label: "Education", value: occupation.education)
         }
         .padding(.horizontal)

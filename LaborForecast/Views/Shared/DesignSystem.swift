@@ -66,13 +66,13 @@ func tierLabel(for tier: String) -> String {
 // MARK: - Formatting Helpers
 
 func formatPay(_ pay: Int?) -> String {
-    guard let pay else { return "N/A" }
+    guard let pay else { return "No data" }
     let k = pay / 1000
     return "$\(k)k"
 }
 
 func formatJobs(_ jobs: Int?) -> String {
-    guard let jobs else { return "N/A" }
+    guard let jobs else { return "No data" }
     if jobs >= 1_000_000 {
         return String(format: "%.1fM", Double(jobs) / 1_000_000)
     } else if jobs >= 1_000 {
@@ -82,7 +82,7 @@ func formatJobs(_ jobs: Int?) -> String {
 }
 
 func formatOutlook(_ outlook: Double?) -> String {
-    guard let outlook else { return "N/A" }
+    guard let outlook else { return "No data" }
     let sign = outlook > 0 ? "+" : ""
     return "\(sign)\(Int(outlook))%"
 }

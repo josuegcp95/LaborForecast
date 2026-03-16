@@ -44,7 +44,7 @@ struct SettingsView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Text("LaborForecast v1.0.0 · Data: BLS OOH 2024–2034")
+                Text("LaborForecast · Data: BLS OOH 2024–2034")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 16)

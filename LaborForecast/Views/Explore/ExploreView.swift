@@ -19,7 +19,7 @@ struct ExploreView: View {
             VStack(spacing: 0) {
                 // Custom subtitle under nav title
                 HStack {
-                    Text("342 occupations · 143M jobs")
+                    Text("341 occupations · 143M jobs")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Spacer()
