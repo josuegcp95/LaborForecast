@@ -38,7 +38,7 @@ struct AboutView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Data Vintage")
                         .font(.headline)
-                    Text("Employment, salary, and outlook figures are from the Bureau of Labor Statistics Occupational Outlook Handbook, 2024–2034 projections. AI exposure scores were generated using Gemini Flash with a structured 6-factor rubric.")
+                    Text("Employment, salary, and outlook figures are from the Bureau of Labor Statistics Occupational Outlook Handbook, 2024–2034 projections. AI exposure scores were generated using Google Gemini Flash with a structured rubric developed by Andrej Karpathy. The key signal is whether a job's work product is fundamentally digital.")
                         .font(.body)
                         .foregroundStyle(.secondary)
                 }
