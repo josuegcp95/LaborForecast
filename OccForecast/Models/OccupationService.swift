@@ -13,7 +13,7 @@ class OccupationService {
     }
 
     private func load() {
-        guard let url = Bundle.main.url(forResource: "occforecast_data", withExtension: "json"),
+        guard let url = Bundle.main.url(forResource: "labor_forecast_data", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let decoded = try? JSONDecoder().decode([Occupation].self, from: data)
         else { return }

@@ -18,6 +18,6 @@ struct MainTabView: View {
                     Label("Saved", systemImage: "heart")
                 }
         }
-        .tint(.occGreen)
+        .tint(Color.occGreen)
     }
 }
