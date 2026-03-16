@@ -10,8 +10,9 @@ import Observation
 
 @Observable
 class FavoritesViewModel {
-    private(set) var savedSlugs: [String]
+    
     private var service: OccupationService?
+    private(set) var savedSlugs: [String]
 
     init() {
         let raw = UserDefaults.standard.string(forKey: "savedSlugs") ?? ""

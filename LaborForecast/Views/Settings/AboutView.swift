@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AboutView: View {
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {

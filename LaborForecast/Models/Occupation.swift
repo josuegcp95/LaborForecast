@@ -22,6 +22,5 @@ struct Occupation: Codable, Identifiable, Hashable {
     let education: String
     let saferAlts: [String]
     let url: String
-
     var id: String { slug }
 }

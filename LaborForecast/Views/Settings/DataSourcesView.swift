@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DataSourcesView: View {
+    
     var body: some View {
         List {
             Section("Labor Market Data") {

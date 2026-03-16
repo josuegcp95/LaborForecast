@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ExploreView: View {
+    
     @Environment(OccupationService.self) var service
     @State private var viewModel = ExploreViewModel()
     @State private var showCategories = false
     @State private var showSettings = false
+    @State private var isReady = false
 
     var body: some View {
         NavigationStack {
@@ -55,17 +57,25 @@ struct ExploreView: View {
                 Divider()
 
                 // List content
-                ScrollView {
-                    LazyVStack(spacing: 12, pinnedViews: []) {
-                        if viewModel.isSearching {
-                            filteredContent
-                        } else {
-                            defaultSections
+                if isReady {
+                    ScrollView {
+                        LazyVStack(spacing: 12, pinnedViews: []) {
+                            if viewModel.isSearching {
+                                filteredContent
+                            } else {
+                                defaultSections
+                            }
                         }
+                        .padding()
                     }
-                    .padding()
+                    .scrollDismissesKeyboard(.interactively)
+                    .transition(.opacity)
+                } else {
+                    Spacer()
+                    ProgressView()
+                        .tint(.secondary)
+                    Spacer()
                 }
-                .scrollDismissesKeyboard(.interactively)
             }
             .navigationTitle("Explore")
             .toolbar {
@@ -99,6 +109,10 @@ struct ExploreView: View {
         .onAppear {
             if !service.isLoaded { return }
             viewModel.load(from: service)
+            Task {
+                try? await Task.sleep(for: .milliseconds(600))
+                withAnimation(.easeIn(duration: 0.3)) { isReady = true }
+            }
         }
         .onChange(of: service.isLoaded) { _, loaded in
             if loaded { viewModel.load(from: service) }

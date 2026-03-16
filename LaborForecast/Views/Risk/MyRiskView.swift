@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MyRiskView: View {
-    @Environment(OccupationService.self) var service
+    
     @Environment(MyRiskViewModel.self) var viewModel
+    @Environment(OccupationService.self) var service
     @State private var searchText = ""
     @State private var selectedCategory: String? = nil
 

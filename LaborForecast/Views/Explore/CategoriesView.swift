@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    
     @Environment(OccupationService.self) var service
-    let onSelect: (String) -> Void
     @Environment(\.dismiss) var dismiss
+    let onSelect: (String) -> Void
 
     private struct CategoryInfo: Identifiable {
         let slug: String

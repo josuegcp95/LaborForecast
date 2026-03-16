@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @Environment(FavoritesViewModel.self) var favorites
-    @Environment(OccupationService.self) var service
     
+    @Environment(OccupationService.self) var service
+    @Environment(FavoritesViewModel.self) var favorites
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {

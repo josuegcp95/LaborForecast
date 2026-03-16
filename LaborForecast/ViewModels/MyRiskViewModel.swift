@@ -10,12 +10,11 @@ import Observation
 
 @Observable
 class MyRiskViewModel {
-    var selectedSlug: String = UserDefaults.standard.string(forKey: "selectedSlug") ?? ""
+    
     var selectedOccupation: Occupation?
-
-    var hasSelection: Bool { !selectedSlug.isEmpty }
-
     private var service: OccupationService?
+    var selectedSlug: String = UserDefaults.standard.string(forKey: "selectedSlug") ?? ""
+    var hasSelection: Bool { !selectedSlug.isEmpty }
 
     func load(from service: OccupationService) {
         self.service = service

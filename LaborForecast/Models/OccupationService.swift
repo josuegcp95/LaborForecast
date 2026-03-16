@@ -10,6 +10,7 @@ import Observation
 
 @Observable
 class OccupationService {
+    
     var occupations: [Occupation] = []
     var isLoaded = false
 

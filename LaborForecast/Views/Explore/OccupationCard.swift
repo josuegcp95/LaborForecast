@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct OccupationCard: View {
-    let occupation: Occupation
+    
     @Environment(\.colorScheme) var colorScheme
+    let occupation: Occupation
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

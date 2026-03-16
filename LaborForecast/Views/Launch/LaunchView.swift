@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct LaunchView: View {
-    let onFinish: () -> Void
-
+    
     @Environment(OccupationService.self) var occupationService
     @Environment(\.colorScheme) var colorScheme
-    @State private var barsVisible = [false, false, false, false, false, false, false]
     @State private var titleVisible = false
     @State private var subtitleVisible = false
+    @State private var barsVisible = [false, false, false, false, false, false, false]
+    let onFinish: () -> Void
 
     private let barColors: [Color] = [
         .riskMinimal, .riskMinimal,

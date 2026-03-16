@@ -104,7 +104,6 @@ func categoryDisplayName(_ slug: String) -> String {
 
 struct TierBadge: View {
     let tier: String
-
     var body: some View {
         Text(tierLabel(for: tier))
             .font(.caption2)

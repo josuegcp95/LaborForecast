@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RiskGauge: View {
+    
+    @State private var progress: Double = 0
     let score: Int
     var animated: Bool = true
-
-    @State private var progress: Double = 0
 
     var body: some View {
         ZStack {

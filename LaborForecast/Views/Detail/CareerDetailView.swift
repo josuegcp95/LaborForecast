@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CareerDetailView: View {
-    let occupation: Occupation
 
     @Environment(OccupationService.self) var service
     @Environment(FavoritesViewModel.self) var favorites
+    let occupation: Occupation
 
     private var saferAlts: [Occupation] {
         service.saferAlternatives(for: occupation)

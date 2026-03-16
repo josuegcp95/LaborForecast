@@ -14,6 +14,7 @@ enum ExploreFilter: Equatable {
 
 @Observable
 class ExploreViewModel {
+    
     var searchText = ""
     var activeFilter: ExploreFilter = .topTen
     var activeCategory: String? = nil
