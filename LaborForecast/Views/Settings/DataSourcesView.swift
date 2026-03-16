@@ -43,7 +43,7 @@ struct DataSourcesView: View {
                     Text("Andrej Karpathy")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                    Text("AI exposure scoring concept and pipeline. Karpathy designed the 0–10 scoring rubric, scraped all 342 BLS occupations, and built the original LLM scoring pipeline that this app's data is built upon.")
+                    Text("AI exposure scoring concept and pipeline. Karpathy designed the 0–10 scoring rubric, scraped all 341 BLS occupations, and built the original LLM scoring pipeline that this app's data is built upon.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Link("@karpathy on X", destination: URL(string: "https://x.com/karpathy")!)

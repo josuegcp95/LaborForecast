@@ -27,6 +27,13 @@ struct SettingsView: View {
                         Label("Data sources", systemImage: "externaldrive")
                     }
                 }
+                
+                Section("Legal") {
+                    Link("Privacy Policy", destination: URL(string: "https://www.termsfeed.com/live/a8d007e5-8b3c-4bd3-b6c3-18722d3dd42d")!)
+                        .foregroundStyle(Color.LFGreen)
+                    Link("Terms & Conditions", destination: URL(string: "https://www.termsfeed.com/live/ad62e2d5-6004-4395-9960-f7a9f106ff6a")!)
+                        .foregroundStyle(Color.LFGreen)
+                }
 
                 Section("App") {
                     ShareLink(
