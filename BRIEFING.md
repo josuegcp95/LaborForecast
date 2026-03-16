@@ -527,9 +527,9 @@ The following files are available in the project root for reference:
 
 - `occforecast_data.json` — the complete data file (drop into Resources/)
 - `OccForecast_Build_Plan.docx` — full build plan with phase breakdown
-- `screenshots/` — reference screenshots for all 10 views (dark mode)
-- `OccForecast_Icon_1024.png` — dark mode app icon
-- `OccForecast_Icon_Light_1024.png` — light mode app icon
+- `Screenshots/` — reference screenshots for all 10 views (dark mode)
+- `OccForecast_Icon_Dark.png` — dark mode app icon
+- `OccForecast_Icon_Light.png` — light mode app icon
 
 ---
 
