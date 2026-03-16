@@ -12,7 +12,6 @@ struct MyRiskView: View {
     @Environment(MyRiskViewModel.self) var viewModel
     @State private var searchText = ""
     @State private var selectedCategory: String? = nil
-    @State private var navPath = NavigationPath()
 
     private var occupationsToShow: [Occupation] {
         var results = service.occupations
@@ -31,7 +30,7 @@ struct MyRiskView: View {
     }
 
     var body: some View {
-        NavigationStack(path: $navPath) {
+        NavigationStack {
             Group {
                 if viewModel.hasSelection, let occupation = viewModel.selectedOccupation {
                     scoreState(occupation)

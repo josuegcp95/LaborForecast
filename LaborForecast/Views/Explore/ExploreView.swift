@@ -12,10 +12,9 @@ struct ExploreView: View {
     @State private var viewModel = ExploreViewModel()
     @State private var showCategories = false
     @State private var showSettings = false
-    @State private var navPath = NavigationPath()
 
     var body: some View {
-        NavigationStack(path: $navPath) {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Custom subtitle under nav title
                 HStack {
@@ -112,17 +111,13 @@ struct ExploreView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 filterChip("All", filter: .all)
-                filterChip("Low risk", filter: .lowRisk)
-                filterChip("High risk", filter: .highRisk)
-                filterChip("$75k+", filter: .highPay)
-                filterChip("No degree", filter: .noDegree)
 
-                if viewModel.activeCategory != nil {
+                if let cat = viewModel.activeCategory {
                     Button {
                         viewModel.setCategory(nil)
                     } label: {
                         HStack(spacing: 4) {
-                            Text(categoryDisplayName(viewModel.activeCategory ?? ""))
+                            Text(categoryDisplayName(cat))
                                 .font(.caption)
                             Image(systemName: "xmark")
                                 .font(.caption2)
@@ -134,6 +129,15 @@ struct ExploreView: View {
                         .clipShape(Capsule())
                     }
                 }
+
+                if viewModel.activeCategory == nil {
+                    filterChip("Top 10", filter: .topTen)
+                }
+                filterChip("Low risk", filter: .lowRisk)
+                filterChip("High risk", filter: .highRisk)
+                filterChip("$75k+", filter: .highPay)
+                filterChip("$100k+", filter: .highPayPlus)
+                filterChip("No degree", filter: .noDegree)
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
@@ -156,7 +160,7 @@ struct ExploreView: View {
         }
     }
 
-    // MARK: - Default sections
+    // MARK: - Default sections (Top 10)
 
     private var defaultSections: some View {
         Group {

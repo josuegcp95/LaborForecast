@@ -9,13 +9,13 @@ import Foundation
 import Observation
 
 enum ExploreFilter: Equatable {
-    case all, lowRisk, highRisk, highPay, noDegree
+    case all, topTen, lowRisk, highRisk, highPay, highPayPlus, noDegree
 }
 
 @Observable
 class ExploreViewModel {
     var searchText = ""
-    var activeFilter: ExploreFilter = .all
+    var activeFilter: ExploreFilter = .topTen
     var activeCategory: String? = nil
 
     private var allOccupations: [Occupation] = []
@@ -24,7 +24,7 @@ class ExploreViewModel {
     private(set) var mostAIProof: [Occupation] = []
 
     var isSearching: Bool {
-        !searchText.isEmpty || activeFilter != .all || activeCategory != nil
+        !searchText.isEmpty || activeFilter != .topTen || activeCategory != nil
     }
 
     private var searchTask: Task<Void, Never>?
@@ -43,11 +43,13 @@ class ExploreViewModel {
 
     func setFilter(_ filter: ExploreFilter) {
         activeFilter = filter
+        if filter == .topTen { activeCategory = nil }
         applyFilters()
     }
 
     func setCategory(_ category: String?) {
         activeCategory = category
+        if category != nil { activeFilter = .all }
         applyFilters()
     }
 
@@ -68,10 +70,11 @@ class ExploreViewModel {
         }
 
         switch activeFilter {
-        case .all:      break
-        case .lowRisk:  results = results.filter { $0.exposure <= 3 }
-        case .highRisk: results = results.filter { $0.exposure >= 7 }
-        case .highPay:  results = results.filter { ($0.pay ?? 0) >= 75_000 }
+        case .all, .topTen: break
+        case .lowRisk:      results = results.filter { $0.exposure <= 3 }
+        case .highRisk:     results = results.filter { $0.exposure >= 7 }
+        case .highPay:      results = results.filter { ($0.pay ?? 0) >= 75_000 }
+        case .highPayPlus:  results = results.filter { ($0.pay ?? 0) >= 100_000 }
         case .noDegree:
             results = results.filter {
                 let edu = $0.education.lowercased()
@@ -84,6 +87,10 @@ class ExploreViewModel {
             results = results.filter { $0.title.lowercased().contains(q) }
         }
 
-        filteredOccupations = results.sorted { $0.title < $1.title }
+        if activeFilter == .highPayPlus {
+            filteredOccupations = results.sorted { ($0.pay ?? 0) > ($1.pay ?? 0) }
+        } else {
+            filteredOccupations = results.sorted { $0.title < $1.title }
+        }
     }
 }

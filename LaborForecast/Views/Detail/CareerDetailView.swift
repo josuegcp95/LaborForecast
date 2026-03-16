@@ -133,7 +133,6 @@ struct CareerDetailView: View {
             Text(value)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .lineLimit(2)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
