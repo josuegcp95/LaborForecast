@@ -37,7 +37,7 @@ struct SettingsView: View {
 
                 Section("App") {
                     ShareLink(
-                        item: URL(string: "https://apps.apple.com/us/developer/josue-cruz/id1653283831")!,
+                        item: URL(string: "https://apps.apple.com/us/app/labor-forecast/id6760671733")!,
                         message: Text("Check your AI exposure risk with Labor Forecast!")
                     ) {
                         Label("Share Labor Forecast", systemImage: "square.and.arrow.up")
