@@ -25,7 +25,7 @@ LaborForecast is a native iOS app that shows AI exposure risk (0–10 scale) for
 ```
 LaborForecast/
 ├── App/
-│   ├── OccForecastApp.swift
+│   ├── LaborForecastApp.swift
 │   └── ContentView.swift
 ├── Models/
 │   ├── Occupation.swift
@@ -460,7 +460,6 @@ var savedSlugs: [String] {
 | `pay` is null (2 occupations: Military, Fishing) | Show "No data" — never force-unwrap |
 | `jobs` is null (1 occupation: Military) | Show "No data" | OCCUPATION REMOVED FROM JSON
 | `saferAlts` is empty (~48 low-risk occupations) | Show message: "This career is already among the most AI-resistant" — no empty scroll view |
-| `socCode` is empty string (52 occupations) | Don't display SOC code field if empty |
 | Slug not found in OccupationService | Should never happen — all saferAlts slugs are validated at build time — but handle gracefully if it does |
 | Very long occupation titles | Use `.lineLimit(2)` on cards, full title on detail view |
 
@@ -470,7 +469,7 @@ var savedSlugs: [String] {
 
 ```swift
 @main
-struct OccForecastApp: App {
+struct LaborForecastApp: App {
     @State private var occupationService = OccupationService()
     @State private var favoritesViewModel = FavoritesViewModel()
     @State private var myRiskViewModel = MyRiskViewModel()
@@ -507,4 +506,4 @@ struct ContentView: View {
 
 ---
 
-*OccForecast · Data: BLS OOH 2024–2034 · AI Scoring: Gemini Flash*
+*LaborForecastApp · Data: BLS OOH 2024–2034 · AI Scoring: Gemini Flash*
