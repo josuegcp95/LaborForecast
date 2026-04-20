@@ -6,7 +6,7 @@
 
 ##### Built with Swift and SwiftUI to explore AI exposure risk across every major US occupation:
 ##### • Follows MVVM architecture
-##### • Scores 341 Bureau of Labor Statistics-tracked occupations 0–10 for AI exposure using a methodology developed by Andrej Karpathy
+##### • Scores 341 Bureau of Labor Statistics-tracked occupations 0–10 for AI exposure
 ##### • Browse all occupations, filter by risk level, salary, education, or industry category
 ##### • Check your own career's AI exposure score instantly under My Risk
 ##### • Discover safer career alternatives with similar salaries
