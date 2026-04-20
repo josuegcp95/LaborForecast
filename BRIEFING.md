@@ -507,30 +507,4 @@ struct ContentView: View {
 
 ---
 
-## Monetization
-
-**v1: Free, no ads, no paywall.**
-
-v1.1 will introduce an optional Pro tier via StoreKit 2. Pro features (not needed for v1):
-- All 5 safer alternatives (free shows first 3)
-- Full AI rationale text
-- Compare two careers side by side
-- Export / share risk report
-
-Do not build any StoreKit infrastructure in v1.
-
----
-
-## Reference Files
-
-The following files are available in the project root for reference:
-
-- `Labor_forecast_data.json` — the complete data file (drop into Resources/)
-- `Labor_Forecast_Build_Plan.docx` — full build plan with phase breakdown
-- `Screenshots/` — reference screenshots for all 10 views (dark mode)
-- `Labor_Forecast_Icon_Dark.png` — dark mode app icon
-- `Labor_Forecast_Icon_Light.png` — light mode app icon
-
----
-
 *OccForecast · Data: BLS OOH 2024–2034 · AI Scoring: Gemini Flash*
