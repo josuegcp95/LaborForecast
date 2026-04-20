@@ -32,7 +32,7 @@ class ExploreViewModel {
 
     func load(from service: OccupationService) {
         allOccupations = service.occupations
-        mostAtRisk  = Array(allOccupations.sorted { $0.exposure > $1.exposure }.prefix(5))
+        mostAtRisk = Array(allOccupations.sorted { $0.exposure > $1.exposure }.prefix(5))
         mostAIProof = Array(allOccupations.sorted { $0.exposure < $1.exposure }.prefix(5))
         applyFilters()
     }

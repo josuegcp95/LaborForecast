@@ -13,15 +13,15 @@ class FavoritesViewModel {
     
     private var service: OccupationService?
     private(set) var savedSlugs: [String]
+    
+    var savedOccupations: [Occupation] {
+        guard let service else { return [] }
+        return savedSlugs.compactMap { service.occupation(for: $0) }
+    }
 
     init() {
         let raw = UserDefaults.standard.string(forKey: "savedSlugs") ?? ""
         savedSlugs = raw.isEmpty ? [] : raw.components(separatedBy: ",")
-    }
-
-    var savedOccupations: [Occupation] {
-        guard let service else { return [] }
-        return savedSlugs.compactMap { service.occupation(for: $0) }
     }
 
     func load(from service: OccupationService) {

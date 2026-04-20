@@ -12,9 +12,8 @@ import Observation
 class OccupationService {
     
     var occupations: [Occupation] = []
-    var isLoaded = false
-
     private var slugIndex: [String: Occupation] = [:]
+    var isLoaded = false
 
     init() {
         load()

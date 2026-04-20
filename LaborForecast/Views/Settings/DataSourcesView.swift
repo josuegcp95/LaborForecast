@@ -28,7 +28,7 @@ struct DataSourcesView: View {
 
             Section("AI Exposure Scoring") {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Gemini Flash — Structured Rubric")
+                    Text("Gemini Flash - Structured Rubric")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                     Text("AI exposure scores (0–10) were generated using Google Gemini Flash with a structured rubric developed by Andrej Karpathy. The key signal: whether a job's work product is fundamentally digital. Jobs done entirely on a computer score higher; jobs requiring physical presence or manual skill score lower.")
